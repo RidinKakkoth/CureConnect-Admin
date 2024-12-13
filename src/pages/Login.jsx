@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { assets } from "../assets/assets";
 import { AdminContext } from "../context/AdminContext";
 import axios from 'axios'
 import { toast } from "react-toastify";
@@ -55,7 +54,7 @@ const Login = () => {
           />
         </div>
         <div className="w-full">
-          <p>Email</p>
+          <p>Password</p>
           <input
             onChange={(e) => setPassword(e.target.value)}
             value={password}

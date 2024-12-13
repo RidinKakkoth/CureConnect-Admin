@@ -10,6 +10,7 @@ import Dashboard from "./pages/Admin/Dashboard";
 import AllAppointments from "./pages/Admin/AllAppointments";
 import AddDoctor from "./pages/Admin/AddDoctor";
 import DoctorsList from "./pages/Admin/DoctorsList";
+import Error500 from "./pages/Error500";
 
 const App = () => {
 
@@ -25,8 +26,10 @@ const App = () => {
         <Route path="/" element={<></>} />
         <Route path="/admin-dashboard" element={<Dashboard/>} />
         <Route path="/all-appointments" element={<AllAppointments/>} />
-        <Route path="/add-doctor" element={<AddDoctor/>} />
+        <Route path="/add-doctor" element={<AddDoctor/>}  />        
         <Route path="/doctor-list" element={<DoctorsList/>} />
+        <Route path="/500" element={<Error500 />} /> 
+        <Route path="*" element={<Error500 />} />   
       </Routes>
       </div>
     </div>

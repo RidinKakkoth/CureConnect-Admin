@@ -13,3 +13,30 @@ export const assets = {
     appointments_icon:"https://res.cloudinary.com/ddymh3cnk/image/upload/v1727781666/CureConnect/admin/appointments_icon_ujmelr.svg",
     earning_icon:"https://res.cloudinary.com/ddymh3cnk/image/upload/v1727781668/CureConnect/admin/earning_icon_isowdg.svg"
 }
+
+export const specialityData = [
+    {
+        speciality: 'General physician',
+        image: assets.General_physician
+    },
+    {
+        speciality: 'Gynecologist',
+        image: assets.Gynecologist
+    },
+    {
+        speciality: 'Dermatologist',
+        image: assets.Dermatologist
+    },
+    {
+        speciality: 'Pediatricians',
+        image: assets.Pediatricians
+    },
+    {
+        speciality: 'Neurologist',
+        image: assets.Neurologist
+    },
+    {
+        speciality: 'Gastroenterologist',
+        image: assets.Gastroenterologist
+    },
+]
