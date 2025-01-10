@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import {toast} from 'react-toastify'
-import { allDoctors } from "../endpoints/AdminEndpoints";
+import { allDoctors, changeDoctorAvailability } from "../endpoints/AdminEndpoints";
 
 export const AdminContext=createContext()
 
@@ -25,13 +25,31 @@ const AdminContextProvider=(props)=>{
         }
     }
 
+    const changeAvailability= async(docId)=>{
+
+        try {
+            const {data}=await changeDoctorAvailability(docId)
+            if(data.success){
+                toast.success(data.message)
+                getAllDoctors()
+            }
+            else{
+                toast.error(data.message)
+            }
+            
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
 
     const value={
         aToken,
         setAToken,
         backendUrl,
         doctors,
-        getAllDoctors
+        getAllDoctors,
+        changeAvailability
     }
 
     return (

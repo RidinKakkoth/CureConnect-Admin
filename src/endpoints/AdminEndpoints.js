@@ -20,7 +20,7 @@ export const allDoctors=async()=>{
             throw new Error(error.response?.data?.message || 'Failed to fetch doctor list');
         }
 }
-export const changeAvailability=async(docId)=>{
+export const changeDoctorAvailability=async(docId)=>{
         try {
             
             const response=await axiosInstance.put('/api/admin/change-availability',{docId})            

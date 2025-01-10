@@ -1,11 +1,10 @@
 import { useContext, useEffect } from "react"
 import { AdminContext } from "../../context/AdminContext"
-import { changeAvailability } from "../../endpoints/AdminEndpoints"
 import { toast } from "react-toastify"
 
 const DoctorsList = () => {
   
-  const{doctors,aToken,getAllDoctors}=useContext(AdminContext)
+  const{doctors,aToken,getAllDoctors,changeAvailability}=useContext(AdminContext)
 
   useEffect(()=>{
 
@@ -15,18 +14,7 @@ const DoctorsList = () => {
 
   },[aToken])
   
-const handleChangeAvailability=async(docId)=>{
 
-    try {
-      const {data}=await changeAvailability(docId)
-      if(data.success){
-        toast.success(data.message)
-        getAllDoctors()
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-}
 
   return (
     <div className="m-5 max-h-[90vh] overflow-y-scroll">
@@ -41,7 +29,7 @@ const handleChangeAvailability=async(docId)=>{
                 <p className="text-neutral-800 text-lg font-medium">{item.name}</p>
                 <p className="text-zinc-600 text-sm">{item.speciality}</p>
                 <div className="mt-2 flex items-center gap-1 text-sm">
-                  <input onChange={()=>{handleChangeAvailability(item._id)}} type="checkbox" checked={item.available} name="" id="" />
+                  <input onChange={()=>{changeAvailability(item._id)}} type="checkbox" checked={item.available} name="" id="" />
                   <p>Available</p>
                 </div>
               </div>
