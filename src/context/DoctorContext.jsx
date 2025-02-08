@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { createContext } from "react";
 import {
+  doctorProfileData,
   finishAppointment,
   getDoctorAppointments,
+  getDoctorDashData,
   toCancelAppointment,
+  toUpdateProfileData,
 } from "../endpoints/DoctorEndpoints";
 import { toast } from "react-toastify";
 
@@ -14,6 +17,8 @@ const DoctorContextProvider = (props) => {
     localStorage.getItem("dToken") ? localStorage.getItem("dToken") : ""
   );
   const [appointments, setAppointments] = useState([]);
+  const[dashData,setDashData]=useState([])
+  const[profileData,setProfileData]=useState(false)
 
   const getAppointments = async () => {
     try {
@@ -56,6 +61,32 @@ const DoctorContextProvider = (props) => {
     }
   };
 
+  const getDashData=async()=>{
+    try {
+        const { data } = await getDoctorDashData();
+        if (data.success) {          
+          setDashData(data.dashData)
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error);
+      }
+  }
+  const getProfileData=async()=>{
+    try {
+        const { data } = await doctorProfileData();
+        if (data.success) {          
+          setProfileData(data.profileData)
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error);
+      }
+  }
+
+
 
   const value = {
     dToken,
@@ -64,6 +95,12 @@ const DoctorContextProvider = (props) => {
     getAppointments,
     completeAppointment,
     cancelAppointment,
+    getDashData,
+    dashData,
+    setDashData,
+    profileData,
+    getProfileData,
+    setProfileData
   };
 
   return (

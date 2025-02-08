@@ -36,16 +36,15 @@ const Login = () => {
           if(data.success){
               
             localStorage.setItem("dToken",data.token)
-            setDToken(data.token)
-            console.log(data.token,"[[[[[[");
-            
+            setDToken(data.token)            
             
           }else{
             toast.error(data.message)
           }
         }
-
-    } catch (error) {
+        
+      } catch (error) {
+      toast.error(error.message)
         
     }
   }
